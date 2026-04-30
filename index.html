@@ -44,14 +44,21 @@
       min-height: 100vh;
     }
     
-    /* 状态栏隐藏 */
+    /* 状态栏 - 枣红色背景 */
     .status-bar {
-      display: none;
+      height: env(safe-area-inset-top, 44px);
+      background: linear-gradient(135deg, var(--red-600), #C43E3E);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
     }
     .app-header {
       background: linear-gradient(135deg, var(--red-600), #C43E3E);
       color: white;
       padding: 12px 24px 60px;
+      padding-top: calc(12px + env(safe-area-inset-top, 44px));
       border-radius: 0 0 40px 40px;
     }
     .app-header-top {
