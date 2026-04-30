@@ -1,8 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#ffffff">
   <title>甜蜜生活 - 糖尿病管理 App</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <style>
@@ -38,11 +42,24 @@
       font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       background: var(--gray-100);
       min-height: 100vh;
+      padding-top: env(safe-area-inset-top);
+    }
+    
+    /* 状态栏占位 - 白色背景 */
+    .status-bar {
+      height: env(safe-area-inset-top, 20px);
+      background: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
     }
     .app-header {
       background: linear-gradient(135deg, var(--red-600), #C43E3E);
       color: white;
-      padding: 20px 24px 60px;
+      padding: 12px 24px 60px;
+      padding-top: calc(12px + env(safe-area-inset-top, 20px));
       border-radius: 0 0 40px 40px;
     }
     .app-header-top {
@@ -725,6 +742,9 @@
   </style>
 </head>
 <body>
+  <!-- iOS 状态栏 -->
+  <div class="status-bar"></div>
+  
   <div class="tab-container">
     <!-- 首页 -->
     <div class="page-content active" id="page-home">
