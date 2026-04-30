@@ -54,30 +54,89 @@
       right: 0;
       z-index: 1000;
     }
+    /* 顶部导航栏 - 独播库风格 */
     .app-header {
-      background: linear-gradient(135deg, var(--red-600), #C43E3E);
+      background: linear-gradient(135deg, #8B4513, #A0522D);
       color: white;
-      padding: 12px 24px 60px;
-      padding-top: calc(12px + env(safe-area-inset-top, 44px));
-      border-radius: 0 0 40px 40px;
+      padding: 12px 16px 16px;
+      padding-top: calc(12px + env(safe-area-inset-top, 20px));
+      border-radius: 0 0 24px 24px;
+      position: relative;
     }
+    
+    /* 顶部搜索栏 */
+    .header-search-bar {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 8px 16px;
+      margin-bottom: 12px;
+    }
+    .header-search-bar input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 14px;
+      outline: none;
+    }
+    .header-search-bar input::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+    .header-search-bar svg {
+      width: 18px;
+      height: 18px;
+      opacity: 0.7;
+      margin-right: 8px;
+    }
+    
+    /* 顶部导航菜单 */
+    .header-nav {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .header-nav::-webkit-scrollbar {
+      display: none;
+    }
+    .header-nav-item {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      white-space: nowrap;
+      padding-bottom: 8px;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .header-nav-item.active {
+      color: white;
+      font-weight: 600;
+      border-bottom-color: white;
+    }
+    .header-nav-item:hover {
+      color: white;
+    }
+    
     .app-header-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 0;
     }
     .header-title {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 600;
     }
     .header-icons {
       display: flex;
-      gap: 16px;
+      gap: 12px;
     }
     .header-icon {
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       background: rgba(255,255,255,0.2);
       border-radius: 50%;
       display: flex;
@@ -86,11 +145,17 @@
       cursor: pointer;
     }
     .header-greeting {
-      font-size: 14px;
+      font-size: 13px;
       opacity: 0.9;
+      margin-top: 8px;
     }
     .header-greeting span {
       font-weight: 600;
+    }
+    
+    /* 隐藏默认header内容 */
+    .header-default-content {
+      display: none;
     }
 
     /* 血糖卡片 */
@@ -98,7 +163,7 @@
       background: white;
       border-radius: 20px;
       padding: 24px;
-      margin: -40px 16px 16px;
+      margin: 16px 16px 16px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.08);
       position: relative;
     }
@@ -296,8 +361,7 @@
       display: block;
     }
     .features-grid {
-      padding: 0 16px;
-      margin-top: -40px;
+      padding: 16px;
       position: relative;
       z-index: 10;
     }
@@ -363,8 +427,7 @@
 
     /* 个人中心 */
     .profile-section {
-      padding: 0 16px;
-      margin-top: -40px;
+      padding: 16px;
       position: relative;
       z-index: 10;
     }
@@ -745,23 +808,34 @@
   <div class="status-bar"></div>
   
   <div class="tab-container">
-    <!-- 首页 -->
-    <div class="page-content active" id="page-home">
-      <div class="page-scroll">
-      <div class="app-header">
-        <div class="app-header-top">
-          <div class="header-title">甜蜜生活</div>
-          <div class="header-icons">
-            <div class="header-icon">
-              <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
-            </div>
-            <div class="header-icon">
-              <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+      <!-- 首页 -->
+      <div class="page-content active" id="page-home">
+        <div class="page-scroll">
+        <div class="app-header">
+          <div class="app-header-top">
+            <div class="header-title">甜蜜生活</div>
+            <div class="header-icons">
+              <div class="header-icon">
+                <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+              </div>
             </div>
           </div>
+          <!-- 搜索栏 -->
+          <div class="header-search-bar">
+            <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2" fill="none"/><path d="m21 21-4.35-4.35" stroke="white" stroke-width="2" fill="none"/></svg>
+            <input type="text" placeholder="搜索血糖、饮食、运动..." />
+          </div>
+          <!-- 导航菜单 -->
+          <div class="header-nav">
+            <span class="header-nav-item active">首页</span>
+            <span class="header-nav-item">血糖记录</span>
+            <span class="header-nav-item">饮食管理</span>
+            <span class="header-nav-item">运动数据</span>
+            <span class="header-nav-item">健康报告</span>
+            <span class="header-nav-item">知识库</span>
+          </div>
+          <div class="header-greeting">早上好，<span>张先生</span></div>
         </div>
-        <div class="header-greeting">早上好，<span>张先生</span></div>
-      </div>
 
       <!-- 血糖主卡片 -->
       <div class="glucose-hero-card">
@@ -906,20 +980,33 @@
       </div><!-- end page-scroll -->
     </div>
 
-    <!-- 功能页 -->
-    <div class="page-content" id="page-features">
-      <div class="page-scroll">
-      <div class="app-header" style="padding-bottom: 30px;">
-        <div class="app-header-top">
-          <div class="header-title">健康工具箱</div>
-          <div class="header-icons">
-            <div class="header-icon">
-              <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke="white" stroke-width="2" fill="none"/></svg>
+      <!-- 功能页 -->
+      <div class="page-content" id="page-features">
+        <div class="page-scroll">
+        <div class="app-header">
+          <div class="app-header-top">
+            <div class="header-title">健康工具箱</div>
+            <div class="header-icons">
+              <div class="header-icon">
+                <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2" fill="none"/><path d="m21 21-4.35-4.35" stroke="white" stroke-width="2" fill="none"/></svg>
+              </div>
             </div>
           </div>
+          <!-- 搜索栏 -->
+          <div class="header-search-bar">
+            <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2" fill="none"/><path d="m21 21-4.35-4.35" stroke="white" stroke-width="2" fill="none"/></svg>
+            <input type="text" placeholder="搜索功能..." />
+          </div>
+          <!-- 导航菜单 -->
+          <div class="header-nav">
+            <span class="header-nav-item">血糖管理</span>
+            <span class="header-nav-item active">用药管理</span>
+            <span class="header-nav-item">饮食管理</span>
+            <span class="header-nav-item">运动管理</span>
+            <span class="header-nav-item">健康资讯</span>
+          </div>
+          <div class="header-greeting">全方位的糖尿病管理助手</div>
         </div>
-        <div class="header-greeting">全方位的糖尿病管理助手</div>
-      </div>
 
       <div class="features-grid">
         <!-- 血糖管理 -->
@@ -1057,19 +1144,31 @@
       </div><!-- end page-scroll -->
     </div>
 
-    <!-- 个人中心 -->
-    <div class="page-content" id="page-profile">
-      <div class="page-scroll">
-      <div class="app-header" style="padding-bottom: 30px;">
-        <div class="app-header-top">
-          <div class="header-title">个人中心</div>
-          <div class="header-icons">
-            <div class="header-icon">
-              <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+      <!-- 个人中心 -->
+      <div class="page-content" id="page-profile">
+        <div class="page-scroll">
+        <div class="app-header">
+          <div class="app-header-top">
+            <div class="header-title">个人中心</div>
+            <div class="header-icons">
+              <div class="header-icon">
+                <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+              </div>
             </div>
           </div>
+          <!-- 搜索栏 -->
+          <div class="header-search-bar">
+            <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2" fill="none"/><path d="m21 21-4.35-4.35" stroke="white" stroke-width="2" fill="none"/></svg>
+            <input type="text" placeholder="搜索设置、帮助..." />
+          </div>
+          <!-- 导航菜单 -->
+          <div class="header-nav">
+            <span class="header-nav-item active">我的</span>
+            <span class="header-nav-item">家庭成员</span>
+            <span class="header-nav-item">消息通知</span>
+            <span class="header-nav-item">帮助反馈</span>
+          </div>
         </div>
-      </div>
 
       <div class="profile-section">
         <div class="profile-card">
